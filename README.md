@@ -7,9 +7,9 @@ c=r+s
 
 where
 
-r=256, 512, 1024, 2048,
+s=256, 512, 1024, 2048,
 
-s=2,3,5,7,11,13,17,19,23,29,31,37,41.
+r=2,3,5,7,11,13,17,19,23,29,31,37,41.
 
 Deck contains the shuffling and dealing functionality.
 
@@ -21,10 +21,10 @@ High Card), CheckRank contains functionality to also determine which of these ca
 During construction, the CheckRank reads the ranks.csv file and prepares the flushes and non-flushes rank lookup tables.
 The tables are maps between unique products of five prime numbers and their ranks. It is needed to separate flushes and
 non-flushes into different tables (this is the only suit difference which affects the strength of the hand), because
-rank-wise the content of the tables is the same for (non-straight Flushes and High Cards), and for (Straight Flushes and non-flush
-Straights).
+rank-wise the content of the tables is the same for (non-straight Flushes and High Cards), and for (Straight Flushes
+and non-flush Straights).
 
-Evaluation of the rank is done as follows. Suppose the five-card hand h={c1,...,c5} is given. First for the bitwise AND is
+Evaluation of the rank is done as follows. Suppose the five-card hand h={c1,...,c5} is given. First the bitwise AND is
 calculated for (c1>>8)&...&(c5>>8) to determine whether the hand is a flush (the output is non-zero iff the hand is a flush).
 Then the (non-)flushes are searched for in the (non-)flushes table, by looking up the number (c1*...*c5)&255.
 
